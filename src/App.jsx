@@ -1,21 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 
 const App = () => {
+  const [name, SetName] = useState("");
+  const [lastName, SetLastName] = useState("");
+
   const onSubmit = (e) => {
     e.preventDefault();
     console.log(e);
-    console.log("on submit");
+    console.log("on submit", name, lastName);
   };
 
   const handleButtonClick = function (e) {
-    // e.stopPropagation();
-    // * Este efecto es muy bueno ya que sabemos
-    // * que es un compotamiento de propagacion,
-    // * que activa el otro metodo, pero especificamente
-    // * en este comportamiento no es una propagacion
-    // * estamos activando el comportamiendo por defecto
-    // * del formulario. Ya que el boton dispara el submit
-    // * y como sabemos tenemos un evento que escucha ese cambio
     e.preventDefault();
     console.log("Hello - guys");
   };
@@ -25,11 +20,23 @@ const App = () => {
       <form onSubmit={onSubmit}>
         <div>
           <label>Nombre:</label>
-          <input type="text" name="txtNombre" id="" />
+          <input
+            type="text"
+            name="txtNombre"
+            id="txtNombre"
+            value={name}
+            onChange={(e) => SetName(e.target.value)}
+          />
         </div>
         <div>
           <label>Apellidos:</label>
-          <input type="text" name="txtApellidos" id="" />
+          <input
+            type="text"
+            name="txtApellidos"
+            id="txtApellidos"
+            value={lastName}
+            onChange={(e) => SetLastName(e.target.value)}
+          />
         </div>
         <button type="submit">Enviar</button>
         <button onClick={(e) => handleButtonClick(e)}>Click</button>
